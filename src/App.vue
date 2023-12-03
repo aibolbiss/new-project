@@ -19,12 +19,29 @@ const searchStore = useSearchStore();
       <Footer />
     </div>
     <div class="info">
-      <img src="./assets/fast.png" alt="Image" class="fast" />
-      <img src="./assets/auto.png" alt="Image" class="auto" />
-      <img src="./assets/road.png" alt="Image" class="road" />
-      <img src="./assets/line.png" alt="Image" class="line" />
+      <div v-if="searchStore.visible">
+        <img src="./assets/fast.png" alt="Image" class="fast" />
+        <img src="./assets/auto.png" alt="Image" class="auto" />
+        <img src="./assets/road.png" alt="Image" class="road" />
+        <img src="./assets/line.png" alt="Image" class="line" />
+      </div>
+
       <div>
-        {{ searchStore.cities }}
+        <div class="card">
+          <div
+            class="card__items"
+            v-for="item in searchStore.cities"
+            :key="item"
+          >
+            <h3 class="type">
+              {{ item.type }}
+            </h3>
+            <p class="available">
+              {{ item.available ? "" : "Not availible in that city" }}
+            </p>
+            <p class="price">{{ item.price }}$</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -63,5 +80,51 @@ const searchStore = useSearchStore();
   position: absolute;
   bottom: 70px;
   right: 0px;
+}
+
+.card {
+  margin: 150px 0 0 100px;
+}
+.card__items {
+  padding: 32px 0 32px 45px;
+  width: 523px;
+  height: 150px;
+  border-radius: 22px;
+  border: 1px solid #e9f0eb;
+  background: #fff;
+  margin-bottom: 20px;
+  background: linear-gradient(
+    310deg,
+    #65b3e4 23.89%,
+    rgba(255, 255, 255, 0) 81.27%
+  );
+  box-shadow: 0px 0px 20px 0px rgba(120, 161, 187, 0.3);
+}
+.type {
+  color: #283044;
+  font-family: Roboto;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.available {
+  margin-top: 5px;
+  color: #283044;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.5;
+}
+.price {
+  color: #78a1bb;
+  font-family: Roboto;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 </style>
