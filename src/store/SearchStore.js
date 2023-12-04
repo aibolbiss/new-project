@@ -6,6 +6,11 @@ export const useSearchStore = defineStore("searchStore", {
   state: () => ({
     cities: [],
     visible: true,
+    images: [
+      { id: 1, url: "https://svgshare.com/i/10R8.svg" },
+      { id: 2, url: "https://svgshare.com/i/10Rf.svg" },
+      { id: 3, url: "https://svgshare.com/i/10QT.svg" },
+    ],
   }),
   actions: {
     async getCities(search) {

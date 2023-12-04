@@ -42,6 +42,10 @@ const searchStore = useSearchStore();
             <p class="price">{{ item.price }}$</p>
           </div>
         </div>
+
+        <!-- <div v-for="image in searchStore.images" :key="image.id">
+          <img :src="image.url" alt="Image" />
+        </div> -->
       </div>
     </div>
   </div>
