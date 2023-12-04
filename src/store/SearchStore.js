@@ -9,11 +9,14 @@ export const useSearchStore = defineStore("searchStore", {
   }),
   actions: {
     async getCities(search) {
-      const response = await fetch(`${url}${search}`);
-      const data = await response.json();
-      this.cities = data;
-      this.visible = false;
-      console.log(data);
+      try {
+        const response = await fetch(`${url}${search}`);
+        const data = await response.json();
+        this.cities = data;
+        this.visible = false;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 });
