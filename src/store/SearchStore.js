@@ -9,7 +9,7 @@ export const useSearchStore = defineStore("searchStore", {
     images: [
       { id: 1, url: "https://svgshare.com/i/10R8.svg" },
       { id: 2, url: "https://svgshare.com/i/10Rf.svg" },
-      { id: 3, url: "https://svgshare.com/i/10QT.svg" },
+      { id: 3, url: "https://svgshare.com/i/10Q3.svg" },
     ],
   }),
   actions: {
