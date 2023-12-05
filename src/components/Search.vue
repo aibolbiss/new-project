@@ -1,31 +1,3 @@
-<template>
-  <form @submit.prevent="selectCity" class="form">
-    <input
-      type="text"
-      list="city"
-      placeholder="Enter name of the city"
-      v-model="inputValue"
-      @input="selectCity"
-      :class="[errorMessage ? 'input_red' : '']"
-    />
-
-    <datalist id="city">
-      <option v-for="city in cities" :key="city">
-        {{ city }}
-      </option>
-    </datalist>
-    <button v-if="!errorMessage">
-      <span>ENTER</span>
-    </button>
-    <button v-else class="btn_red" @click="remove">
-      <span>X</span>
-    </button>
-  </form>
-  <p class="error" v-if="errorMessage">
-    We didn’t found such city. Please check spelling
-  </p>
-</template>
-
 <script setup>
 import { ref, computed } from "vue";
 import { useSearchStore } from "../store/SearchStore";
@@ -59,6 +31,34 @@ const remove = () => {
   errorMessage.value = false;
 };
 </script>
+
+<template>
+  <form @submit.prevent="selectCity" class="form">
+    <input
+      type="text"
+      list="city"
+      placeholder="Enter name of the city"
+      v-model="inputValue"
+      @input="selectCity"
+      :class="[errorMessage ? 'input_red' : '']"
+    />
+
+    <datalist id="city">
+      <option v-for="city in cities" :key="city">
+        {{ city }}
+      </option>
+    </datalist>
+    <button v-if="!errorMessage">
+      <span>ENTER</span>
+    </button>
+    <button v-else class="btn_red" @click="remove">
+      <span>X</span>
+    </button>
+  </form>
+  <p class="error" v-if="errorMessage">
+    We didn’t found such city. Please check spelling
+  </p>
+</template>
 
 <style scoped>
 .form {
