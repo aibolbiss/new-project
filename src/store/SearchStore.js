@@ -24,8 +24,6 @@ export const useSearchStore = defineStore("searchStore", {
           ...item,
           url: this.images[index].url,
         }));
-
-        console.log(newArray);
       } catch (error) {
         console.log(error);
       }
