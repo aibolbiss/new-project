@@ -30,22 +30,29 @@ const searchStore = useSearchStore();
         <div class="card">
           <div
             class="card__items"
+            :class="[!item.available ? 'opacity' : '']"
             v-for="item in searchStore.cities"
             :key="item"
           >
-            <h3 class="type">
-              {{ item.type }}
-            </h3>
-            <p class="available">
-              {{ item.available ? "" : "Not availible in that city" }}
-            </p>
-            <p class="price">{{ item.price }}$</p>
+            <div class="card__content">
+              <div class="card__content_left">
+                <h3 class="type">
+                  {{ item.type }}
+                </h3>
+                <p class="available">
+                  {{ item.available ? "" : "Not availible in that city" }}
+                </p>
+                <p class="price">{{ item.price }}$</p>
+              </div>
+              <div class="card__content_right">
+                <img :src="item.url" alt="Image" />
+              </div>
+            </div>
+            <div class="card__check" v-if="item.available">
+              <img src="./assets/check.png" alt="Image" />
+            </div>
           </div>
         </div>
-
-        <!-- <div v-for="image in searchStore.images" :key="image.id">
-          <img :src="image.url" alt="Image" />
-        </div> -->
       </div>
     </div>
   </div>
@@ -87,22 +94,49 @@ const searchStore = useSearchStore();
 }
 
 .card {
-  margin: 150px 0 0 100px;
+  margin: 130px 0 0 100px;
 }
 .card__items {
-  padding: 32px 0 32px 45px;
-  width: 523px;
-  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  width: 560px;
   border-radius: 22px;
   border: 1px solid #e9f0eb;
   background: #fff;
   margin-bottom: 20px;
+}
+.card__items:hover {
+  box-shadow: 0px 0px 20px 0px rgba(120, 161, 187, 0.3);
+}
+.card__content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 170px;
+  padding: 32px 45px;
+}
+.card__content_left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.card__content_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card__check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
   background: linear-gradient(
     310deg,
-    #65b3e4 23.89%,
-    rgba(255, 255, 255, 0) 81.27%
+    #65b3e4 33.89%,
+    rgba(255, 255, 255, 0) 99%
   );
-  box-shadow: 0px 0px 20px 0px rgba(120, 161, 187, 0.3);
+  border-radius: 0 22px 22px 0;
 }
 .type {
   color: #283044;
@@ -117,18 +151,23 @@ const searchStore = useSearchStore();
   margin-top: 5px;
   color: #283044;
   font-family: Roboto;
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   opacity: 0.5;
 }
 .price {
+  position: absolute;
+  bottom: 0;
   color: #78a1bb;
   font-family: Roboto;
   font-size: 50px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+.opacity {
+  opacity: 0.5;
 }
 </style>

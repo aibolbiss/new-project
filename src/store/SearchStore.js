@@ -7,9 +7,9 @@ export const useSearchStore = defineStore("searchStore", {
     cities: [],
     visible: true,
     images: [
-      { id: 1, url: "https://svgshare.com/i/10R8.svg" },
-      { id: 2, url: "https://svgshare.com/i/10Rf.svg" },
-      { id: 3, url: "https://svgshare.com/i/10Q3.svg" },
+      { url: "https://svgshare.com/i/10R8.svg" },
+      { url: "https://svgshare.com/i/10Rf.svg" },
+      { url: "https://svgshare.com/i/10Q3.svg" },
     ],
   }),
   actions: {
@@ -19,6 +19,13 @@ export const useSearchStore = defineStore("searchStore", {
         const data = await response.json();
         this.cities = data;
         this.visible = false;
+
+        this.cities = this.cities.map((item, index) => ({
+          ...item,
+          url: this.images[index].url,
+        }));
+
+        console.log(newArray);
       } catch (error) {
         console.log(error);
       }
